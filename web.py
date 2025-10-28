@@ -1,28 +1,25 @@
 import streamlit as st
-import functions
 
-def add_to_do():
-    todo = st.session_state["new_todo"] +'\n'
-    todos.append(todo)
-    functions.write_todos(todos)
+st.title("My To-Do App")
+st.subheader("Personal task tracker")
+st.write("This app helps you stay productive — your todos stay private in your browser session.")
 
+# Initialize todos for this session only
+if "todos" not in st.session_state:
+    st.session_state.todos = []
 
-todos = functions.get_todos()
-st.title("My ToDo app")
-st.subheader("This is my todoapp")
-st.write("This app is to increase your productivity")
+def add_todo():
+    todo = st.session_state["new_todo"].strip()
+    if todo:
+        st.session_state.todos.append(todo)
+        st.session_state["new_todo"] = ""  # clear input
 
+# Add todos
+st.text_input("Enter a new todo:", key="new_todo", on_change=add_todo)
 
-for index, todo in enumerate(todos):
-    checkbox = st.checkbox(todo, key=f"{todo}_{index}")
-    if checkbox is True:
-        todos.pop(index)
-        functions.write_todos(todos)
-        del st.session_state[f"{todo}_{index}"]
+# Display todos
+for i, todo in enumerate(st.session_state.todos):
+    checkbox = st.checkbox(todo, key=f"todo_{i}")
+    if checkbox:
+        st.session_state.todos.pop(i)
         st.rerun()
-
-
-
-st.text_input(label="Enter a todo: ", placeholder="Add a new todo...",
-              on_change=add_to_do, key='new_todo')
-
