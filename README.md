@@ -5,7 +5,7 @@ I designed and developed this project during my **internship** to help me manage
 
 ---
 
-## 🚀 Features
+## Features
 
 - Add, edit, and remove tasks easily  
 - Persistent storage using a simple text file  
