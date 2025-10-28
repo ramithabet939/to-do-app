@@ -1,4 +1,4 @@
-echo "# 📝 To-Do App
+## 📝 To-Do App
 
 A simple, interactive **To-Do web app** built with Streamlit.  
 I designed and developed this project during my **internship** to help me manage my daily tasks and stay productive.
